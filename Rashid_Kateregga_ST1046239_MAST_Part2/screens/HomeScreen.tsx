@@ -1,19 +1,23 @@
+// screens/HomeScreen.tsx
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, FlatList, StyleSheet, Image, ImageBackground } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 
 const chefLogo = require('../assets/chef.jpeg');
-const backgroundImg = require('../assets/back.jpg'); 
+const backgroundImg = require('../assets/back.jpg');
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 export default function HomeScreen({ navigation, route }: HomeScreenProps) {
-  const [menuItems, setMenuItems] = useState<{ dishName: string, description: string, course: string, price: number }[]>([]);
+  const [menuItems, setMenuItems] = useState<{ dishName: string; description: string; course: string; price: number }[]>([]);
 
   useEffect(() => {
     if (route.params?.newItem) {
-      setMenuItems((prevItems) => [...prevItems, route.params.newItem as { dishName: string; description: string; course: string; price: number }]);
+      setMenuItems((prevItems) => [
+        ...prevItems,
+        route.params.newItem as { dishName: string; description: string; course: string; price: number },
+      ]);
     }
   }, [route.params?.newItem]);
 
@@ -26,12 +30,12 @@ export default function HomeScreen({ navigation, route }: HomeScreenProps) {
           <Button
             title="Add Menu"
             onPress={() => navigation.navigate('AddMenu')}
-            color={styles.button.backgroundColor}
+            color="#FFA500"
           />
           <Button
             title="Filter Menu"
-            onPress={() => navigation.navigate('FilterMenu')}
-            color={styles.button.backgroundColor}
+            onPress={() => navigation.navigate('FilterMenu', { menuItems })} // Passes menuItems
+            color="#FFA500"
           />
         </View>
 
@@ -63,7 +67,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: 'rgba(240, 248, 255, 0.8)', 
+    backgroundColor: 'rgba(240, 248, 255, 0.8)',
   },
   logo: {
     width: 100,
@@ -83,11 +87,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 30,
     width: '80%',
-  },
-  button: {
-    backgroundColor: '#FFA500',
-    color: '#FFF',
-    padding: 10,
-    borderRadius: 5,
   },
 });

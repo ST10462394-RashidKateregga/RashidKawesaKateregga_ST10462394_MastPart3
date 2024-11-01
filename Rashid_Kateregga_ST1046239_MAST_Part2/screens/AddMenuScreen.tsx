@@ -1,3 +1,4 @@
+// screens/AddMenuScreen.tsx
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ImageBackground } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
@@ -5,7 +6,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 
 const courses = ['Starters', 'Mains', 'Desserts'];
-const backgroundImg = require('../assets/back.jpg'); 
+const backgroundImg = require('../assets/back.jpg');
 
 type AddMenuScreenProps = NativeStackScreenProps<RootStackParamList, 'AddMenu'>;
 
@@ -44,7 +45,7 @@ export default function AddMenuScreen({ navigation }: AddMenuScreenProps) {
           keyboardType="numeric"
         />
 
-        <Button title="Add Dish" onPress={handleSubmit} color={styles.button.backgroundColor} />
+        <Button title="Add Dish" onPress={handleSubmit} color="#FFA500" />
       </View>
     </ImageBackground>
   );
@@ -53,12 +54,12 @@ export default function AddMenuScreen({ navigation }: AddMenuScreenProps) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    resizeMode: 'cover', 
+    resizeMode: 'cover',
   },
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: 'rgba(240, 248, 255, 0.8)', 
+    backgroundColor: 'rgba(240, 248, 255, 0.8)',
   },
   label: {
     fontSize: 18,
@@ -70,8 +71,5 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 5,
     marginBottom: 10,
-  },
-  button: {
-    backgroundColor: '#FFA500',
   },
 });
