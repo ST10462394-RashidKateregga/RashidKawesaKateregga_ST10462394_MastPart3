@@ -1,5 +1,5 @@
+https://youtu.be/qVzarvQZaXM
 How to Use
-
 Add Menu Items
 Start the app.
 On the Home screen, tap "Go to Add Menu."
